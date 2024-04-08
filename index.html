@@ -30,11 +30,24 @@
 
     <section id="demo">
         <h2>Demo</h2>
-        <p>See NateGPT in action...</p>
+        <p>Ask NateGPT your AI questions:</p>
+        <input type="text" id="questionInput" placeholder="Enter your question...">
+        <button onclick="askQuestion()">Ask</button>
+        <div id="answerOutput"></div>
     </section>
 
     <footer>
         <p>&copy; 2024 NateGPT. All rights reserved.</p>
     </footer>
+
+    <script>
+        function askQuestion() {
+            var question = document.getElementById("questionInput").value;
+            // Here you would call your AI model (NateGPT) with the user's question and get the response
+            // For this example, let's just display a simple response
+            var answer = "NateGPT: The answer to your question is...";
+            document.getElementById("answerOutput").innerText = answer;
+        }
+    </script>
 </body>
 </html>
