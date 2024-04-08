@@ -13,7 +13,7 @@
             <ul>
                 <li><a href="#about">About</a></li>
                 <li><a href="#documentation">Documentation</a></li>
-                <li><a href="#demo">Demo</a></li>
+                <li><a href="#ask-question">Ask a Question</a></li>
             </ul>
         </nav>
     </header>
@@ -28,8 +28,8 @@
         <p>Learn how to use NateGPT...</p>
     </section>
 
-    <section id="demo">
-        <h2>Demo</h2>
+    <section id="ask-question">
+        <h2>Ask a Question</h2>
         <p>Ask NateGPT your AI questions:</p>
         <input type="text" id="questionInput" placeholder="Enter your question...">
         <button onclick="askQuestion()">Ask</button>
@@ -43,10 +43,30 @@
     <script>
         function askQuestion() {
             var question = document.getElementById("questionInput").value;
-            // Here you would call your AI model (NateGPT) with the user's question and get the response
-            // For this example, let's just display a simple response
-            var answer = "NateGPT: The answer to your question is...";
+            var answer;
+            
+            // Check if the question is a math question
+            if (isMathQuestion(question)) {
+                // Attempt to evaluate the math expression
+                try {
+                    answer = eval(question); // Evaluate the math expression
+                } catch (error) {
+                    answer = "Invalid math expression"; // Display an error message if evaluation fails
+                }
+            } else {
+                // Here you would call your AI model (NateGPT) with the user's question and get the response
+                // For this example, let's just display a simple response
+                answer = "NateGPT: The answer to your question is...";
+            }
+            
+            // Display the answer
             document.getElementById("answerOutput").innerText = answer;
+        }
+
+        function isMathQuestion(question) {
+            // Regular expression to match basic math expressions
+            var mathRegex = /[+\-*/()\d]/;
+            return mathRegex.test(question);
         }
     </script>
 </body>
